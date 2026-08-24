@@ -6,6 +6,6 @@ Vi har därför fått öva på hur man kan skapa en webbapplikation som tillåte
 Databasen som användes i denna laboration är via render.com och deras tjänst för Postgre. 
 
 ## 🔗 Länk till inspelning av laborationslösningen 🔗
-https://youtu.be/8lLMtWpTQIk 
+https://youtu.be/NQFPH77YoiU
 
 ### /Riina Aaltonen 
