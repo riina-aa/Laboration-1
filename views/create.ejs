@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
+    <title>Laboration 1</title>
+</head>
+
+<body>
+    <main>
+        <header>
+            <h1>CV Creator</h1>
+            <nav>
+                <ul>
+                    <li><a href="/">Start</a></li>
+                    <li><a href="/create">Skapa ditt CV</a></li>
+                    <li><a href="/about">Om</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <section class="intro">
+            <h2>Fyll i formuläret</h2>
+            <p>Här nedan finns det ett formulär du kan fylla i för att lägga till information till ditt CV.</p>
+        </section>
+        <div class="form-container">
+            <form action="/save-profile" method="post">
+                <fieldset>
+                    <h3>Personuppgifter</h3>
+                    <div class="inputs">
+                        <label for="fname">Förnamn:</label>
+                        <div class="errors">
+                            <input type="text" name="fname" id="fname">
+                            <% if (profileErrors.fname) { %>
+                                <p class="error">
+                                    <%= profileErrors.fname %>
+                                </p>
+                                <% } %>
+                        </div>
+                    </div>
+                    <div class="inputs">
+                        <label for="lname">Efternamn:</label>
+                        <div class="errors">
+                            <input type="text" name="lname" id="lname">
+                            <% if (profileErrors.lname) { %>
+                                <p class="error">
+                                    <%= profileErrors.lname %>
+                                </p>
+                                <% } %>
+                        </div>
+                    </div>
+                    <div class="inputs">
+                        <label for="occupation">Arbetstitel:</label>
+                        <div class="errors">
+                            <select name="occupation" id="occupation">
+                                <option value="frontendutvecklare">Frontendutvecklare</option>
+                                <option value="backendutvecklare">Backendutvecklare</option>
+                                <option value="fullstackutvecklare">Fullstackutvecklare</option>
+                                <option value="ux">UX/UI-utvecklare</option>
+                                <option value="webbdesigner">Webbdesigner</option>
+                                <option value="systemutvecklare">Systemutvecklare</option>
+                            </select>
+                            <% if (profileErrors.occupation) { %>
+                                <p class="error">
+                                    <%= profileErrors.occupation %>
+                                </p>
+                                <% } %>
+                        </div>
+                    </div>
+                    <div class="inputs">
+                        <label for="email">Email:</label>
+                        <div class="errors">
+                            <input type="text" name="email" id="email">
+                            <% if (profileErrors.email) { %>
+                                <p class="error">
+                                    <%= profileErrors.email %>
+                                </p>
+                                <% } %>
+                        </div>
+                    </div>
+                    <div class="inputs">
+                        <label for="fname">Telefon:</label>
+                        <div class="errors">
+                            <input type="number" name="telephone" id="telefon">
+                            <% if (profileErrors.telephone) { %>
+                                <p class="error">
+                                    <%= profileErrors.telephone %>
+                                </p>
+                                <% } %>
+                        </div>
+                    </div>
+                    <div>
+                        <button class="buttonstyle-red" type="submit">Spara uppgifter</button>
+                        <button class="buttonstyle-red" type="reset">Rensa formulär</button>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+        <div class="form-container">
+            <form action="/save-course" method="post">
+                <fieldset>
+                    <h3>Lägg till kurser</h3>
+                    <div class="inputs">
+                        <label for="coursename">Kursnamn:</label>
+                        <div class="errors">
+                            <input type="text" name="coursename" id="coursename">
+                            <% if (courseErrors.coursename) { %>
+                                <p class="error">
+                                    <%= courseErrors.coursename %>
+                                </p>
+                                <% } %>
+                        </div>
+                    </div>
+                    <div class="inputs">
+                        <label for="coursecode">Kurskod:</label>
+                        <div class="errors">
+                            <input type="text" name="coursecode" id="coursecode">
+                            <% if (courseErrors.coursecode) { %>
+                                <p class="error">
+                                    <%= courseErrors.coursecode %>
+                                </p>
+                                <% } %>
+                        </div>
+                    </div>
+                    <div class="inputs">
+                        <label for="syllabus">Syllabus (URL):</label>
+                        <div class="errors">
+                            <input type="text" name="syllabus" id="syllabus" placeholder="Klistra in webblänken här">
+                            <% if (courseErrors.syllabus) { %>
+                                <p class="error">
+                                    <%= courseErrors.syllabus %>
+                                </p>
+                                <% } %>
+                        </div>
+
+                    </div>
+                    <div class="inputs">
+                        <label for="prog">Progression:</label>
+                        <div class="errors">
+                            <select name="progression" id="prog">
+                                <option value="a">A</option>
+                                <option value="b">B</option>
+                            </select>
+                            <% if (courseErrors.progression) { %>
+                                <p class="error">
+                                    <%= courseErrors.progression %>
+                                </p>
+                                <% } %>
+                        </div>
+                    </div>
+                    <div>
+                        <button class="buttonstyle-red" type="submit">Lägg till kurs</button>
+                        <button class="buttonstyle-red" type="reset">Rensa formulär</button>
+                    </div>
+                </fieldset>
+            </form>
+            <% if (Object.keys(courseErrors).length> 0) { %>
+
+                <div class="meddelande-ruta">
+                    <p><b>Hoppsan, något gick fel!</b></p>
+
+                    <ul>
+                        <% Object.values(courseErrors).forEach(error=> { %>
+                            <li>
+                                <%= error %>
+                            </li>
+                            <% }) %>
+                    </ul>
+                </div>
+
+            <% } %>
+        </div>
+
+        <footer>
+            <p>Laboration 1</p>
+            <p>Kurs: Backend-baserad webbutveckling</p>
+            <p>Riina Aaltonen - 2025</p>
+            <p>Webbutvecklingsprogrammet</p>
+        </footer>
+    </main>
+</body>
+
+</html>

@@ -1,0 +1,237 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #0D1B1E;
+    color: #FBFEF9; 
+    font-family: "Quicksand", sans-serif;
+}
+
+header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem 4rem;
+    box-shadow: 0px 2px 30px #060D0E;
+}
+
+nav ul {
+    display: flex;
+    flex-direction: row;
+    gap: 3em;
+    list-style: none;
+}
+
+nav ul li a {
+    color: #FBFEF9; 
+    text-decoration: none;
+    font-size: 1.2em;
+    padding: 0.8rem 1.3rem;
+}
+
+nav ul li a:hover {
+    background-color: #820933;
+    border-radius: 50px;
+
+}
+
+.intro {
+    max-width: 73ch;
+    padding: 7rem 5rem;
+    line-height: 1.5;
+}
+
+.intro h2 {
+    margin-bottom: 1rem;
+}
+
+.intro p {
+    margin-bottom: 2rem;
+}
+
+.buttonstyle-red {
+    display: inline-block;
+    max-width: fit-content;
+    font-family: "Quicksand", sans-serif;
+    background-color: #820933;
+    padding: 0.8rem 1.3rem;
+    color: #FBFEF9;
+    text-decoration: none;
+    border-radius: 50px;
+    border: none;
+}
+
+.buttonstyle-red:hover {
+    background-color: #990B3C;
+    cursor: pointer;
+}
+
+.cv-page {
+    background-color: #FBFEF9;
+    color: black;
+    width: 595px; 
+    height: 842px;
+    margin: 0 auto;
+    padding: 3rem;
+}
+
+.cv-page .bold {
+    font-weight: 600;
+    font-size: 1.2em;
+}
+
+.starting-message {
+    text-align: center;
+    padding-top: 3rem;
+}
+
+.profile {
+    display: flex;
+    flex-direction: column;
+}
+
+.cv {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 3rem;
+}
+
+.title h2 {
+    font-size: 3em;
+}
+
+.title h3 {
+    font-size: 1.5em;
+    text-transform: capitalize;
+}
+
+.title div {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+.courses {
+    margin-bottom: 1rem;
+}
+
+.courses table {
+    width: 100%;
+}
+
+.head td {
+    font-weight: 600;
+}
+
+.delete-symbol-row form {
+    display: inline;
+    max-width: fit-content;
+    padding: 0;
+}
+
+.buttonstyle-delete {
+    margin: 0; 
+    padding: 0; 
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+
+#delete-btn {
+    color: #990B3C;
+    font-size: 1.1em;
+    margin-top: 0.2rem;
+}
+
+.link-row td {
+    padding-bottom: 1rem;
+}
+
+.courses .link {
+    font-size: 0.8em;
+    margin-top: 0.5rem;
+}
+
+.form-container {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+}
+
+form {
+    padding: 0rem 5rem;
+    width: 50%;
+}
+
+fieldset {
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+fieldset button {
+    margin-right: 1rem;
+    margin-top: 1rem;
+}
+
+.inputs {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+.errors {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    width: 75%;
+}
+
+.errors input {
+    width: 100%;
+    height: 2rem;
+    padding: 0 0.5rem;
+    font-family: "Quicksand", sans-serif;
+}
+
+.errors select {
+    width: 100%;
+    height: 2rem;
+    padding: 0 0.5rem;
+    font-family: "Quicksand", sans-serif;
+}
+
+.error {
+    color: #990B3C;
+    font-style: italic;
+}
+
+.meddelande-ruta {
+    background-color: #18343A;
+    color: #990B3C; 
+    padding: 1.5rem;
+    max-height: fit-content;
+    max-width: fit-content;
+    border-radius: 10px;
+}
+
+.felmeddelanden p {
+    margin-bottom: 1rem;
+}
+
+.felmeddelanden ul {
+    list-style-position: inside;
+}
+
+footer {
+    text-align: center;
+    padding: 5rem;
+}

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
+    <title>Laboration 1</title>
+</head>
+
+<body>
+    <main>
+        <header>
+            <h1>CV Creator</h1>
+            <nav>
+                <ul>
+                    <li><a href="/">Start</a></li>
+                    <li><a href="/create">Skapa ditt CV</a></li>
+                    <li><a href="/about">Om</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <section class="intro">
+            <h2>Om denna webbplats</h2>
+            <p>Syftet med denna webbplats är att kunna skapa ett CV med de kurser man har genomfört under Webbutvecklingsprogrammet på Mittuniversitet. Denna webbplats är en lösning på Laboration 1 i kurs Backendbaserad webbutveckling.</p>
+            <p>Jag valde att pröva använda Postgre via Render som relationsdatabas. Databasen har två tabeller, en för personlig information och en för att lagra kurser. Tabellerna är kopplade med en foreign key där varje kurs är kopplad till en användare och på så sätt kan flera kurser tillhöra samma profil. I denna uppgift valde jag att kurserna skulle lagras mot ett specifikt id då det bara är "jag" som kommer att registrera mig, men i ett verkligt scenario hade man kunnat skapa en inloggning på något vis för att flera användare ska kunna använda tjänsten.</p>
+            <h2>Slutsatser</h2>
+            <p>Denna uppgift tycker jag har varit rolig, men det har varit lite utmanande med routing och få sidorna att fungera. Jag har lärt mig att man måste skicka med variabler och objekt varje gång sidan ska renderas om, oavsett vilken routing renderingen sker.</p>
+            <p>Uppgiften har varit lärorik, och det har varit kul att få koppla ihop en databas och använda i ett projekt. I databaskursen så skapade vi bara en databas utan att använda den i ett riktigt projekt.</p>
+        </section>
+        <footer>
+            <p>Laboration 1</p>
+            <p>Kurs: Backend-baserad webbutveckling</p>
+            <p>Riina Aaltonen - 2025</p>
+            <p>Webbutvecklingsprogrammet</p>
+        </footer>
+    </main>
+</body>
+
+</html>
