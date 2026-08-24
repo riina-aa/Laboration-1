@@ -1,6 +1,8 @@
+//Laddar ner paket
 const { Client } = require("pg");
 require("dotenv").config(); 
 
+//Skapar en ny databas
 const client = new Client({
     host: process.env.DB_HOST, 
     port: process.env.DB_PORT,
@@ -12,6 +14,7 @@ const client = new Client({
     },
 });
 
+//Kopplar upp mot databas
 client.connect((err ) => {
      if (err) {
         console.log("Connection error: " + err);
@@ -21,11 +24,12 @@ client.connect((err ) => {
     };
 }); 
 
+//Skapar tabeller i databasen
 async function createTables() {
 
     try {
         const res = await client.query(`
-            DROP TABLE IF EXISTS courses;
+            DROP TABLE IF EXISTS courses; 
             DROP TABLE IF EXISTS profile; 
             CREATE TABLE IF NOT EXISTS profile (
                 profile_id SERIAL PRIMARY KEY,

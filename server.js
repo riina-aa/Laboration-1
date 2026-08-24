@@ -1,3 +1,4 @@
+//Laddar upp paket
 const { Client } = require("pg");
 require("dotenv").config();
 
@@ -9,6 +10,7 @@ app.set("view engine", "ejs")
 app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true }))
 
+//Skapar databas
 const client = new Client({
     host: process.env.DB_HOST,
     port: process.env.DB_PORT,
@@ -20,6 +22,7 @@ const client = new Client({
     },
 });
 
+//Kopplar upp mot databas
 client.connect((err) => {
     if (err) {
         console.log("Connection error: " + err);
@@ -29,16 +32,16 @@ client.connect((err) => {
 });
 
 //Routing
-app.get("/", async (req, res) => {
+app.get("/", async (req, res) => { 
 
     try {
-        const profile = await client.query(
+        const profile = await client.query( //Hämtar person-data från databasen
             "SELECT * FROM profile;"
         )
-        const courses = await client.query(
+        const courses = await client.query( //Hämtar kurs-data från databasen
             "SELECT * FROM courses WHERE profile_id = 1;"
         )
-        res.render("index", { 
+        res.render("index", { //Renderar startsidan med datan som hämtats
             profile: profile.rows[0],
             courses: courses.rows
         })
@@ -47,6 +50,7 @@ app.get("/", async (req, res) => {
     }
 });
 
+//Routing
 app.get("/create", (req, res) => {
     res.render("create", {
         profileErrors: {},
@@ -54,10 +58,12 @@ app.get("/create", (req, res) => {
     })
 })
 
+//Routing
 app.get("/about", (req, res) => {
     res.render("about");
 });
 
+//Tar emot och sparar data från formulär
 app.post("/save-profile", async (req, res) => {
     const fname = req.body.fname;
     const lname = req.body.lname;
@@ -66,6 +72,7 @@ app.post("/save-profile", async (req, res) => {
     const telephone = req.body.telephone;
     let profileErrors = {}; 
 
+    //Lägger till felmeddelanden och sparar felen i variabeln profileErrors
     if (fname === "") {
         profileErrors.fname = "Förnamn måste fyllas i och får inte vara tomt."
     }
@@ -86,7 +93,7 @@ app.post("/save-profile", async (req, res) => {
         profileErrors.telephone = "Telefonnummer måste fyllas i och får inte vara tomt."
     }
   
-    if (Object.keys(profileErrors).length > 0) {
+    if (Object.keys(profileErrors).length > 0) { //Om det finns felmeddelanden så renderas sidan med de lagrade felmeddelandena
         res.render("create", {
             profileErrors: profileErrors,
             courseErrors: {}
@@ -94,7 +101,7 @@ app.post("/save-profile", async (req, res) => {
         return;
     }
        
-    try {
+    try { //Finns inga felmeddelanden så sparas formulärdata i databasen och renderar om sidan
         const result = await client.query(
             "INSERT INTO profile(firstname, lastname, occupation, email, telephone) VALUES($1, $2, $3, $4, $5)", [fname, lname, occupation, email, telephone]
         );
@@ -106,6 +113,7 @@ app.post("/save-profile", async (req, res) => {
     }
 })
 
+//Tar emot och sparar data från formulär
 app.post("/save-course", async (req, res) => {
     const coursename = req.body.coursename;
     const coursecode = req.body.coursecode;
@@ -113,6 +121,7 @@ app.post("/save-course", async (req, res) => {
     const progression = req.body.progression;
     let courseErrors = {}; 
 
+    //Lägger till felmeddelanden och sparar felen i variabeln profileErrors
     if (coursename === "") {
         courseErrors.coursename = "Kursnamn måste fyllas i och får inte vara tomt."
     }
@@ -129,7 +138,7 @@ app.post("/save-course", async (req, res) => {
         courseErrors.progression = "Du måste välja ett progressionsalternativ."
     }
   
-    if (Object.keys(courseErrors).length > 0) {
+    if (Object.keys(courseErrors).length > 0) { //Om det finns felmeddelanden så renderas sidan med de lagrade felmeddelandena
         res.render("create", {
             courseErrors: courseErrors,
             profileErrors: {}
@@ -137,7 +146,7 @@ app.post("/save-course", async (req, res) => {
         return;
     }
 
-    try {
+    try { //Finns inga felmeddelanden så sparas formulärdata i databasen och renderar om sidan
         const getProfile = await client.query("SELECT profile_id FROM profile;")
         const profile_id = getProfile.rows[0].profile_id;
         const result = await client.query(
@@ -151,17 +160,18 @@ app.post("/save-course", async (req, res) => {
     }
 })
 
+//Tar emot data från "radera-formuläret"
 app.post("/delete-course", async (req, res) => {
     const courseID = req.body.course_id; 
 
-    await client.query(
+    await client.query( //Skickar en radera-query till databasen
         "DELETE FROM courses WHERE course_id = $1", [courseID]
     ); 
 
     res.redirect("/");
 })
 
-//Starta applikation
+//Startar applikation
 app.listen(process.env.PORT, () => {
     console.log("Server started at http://localhost:" + process.env.PORT);
 });
