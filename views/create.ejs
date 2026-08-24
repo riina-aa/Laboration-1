@@ -159,21 +159,6 @@
                     </div>
                 </fieldset>
             </form>
-            <% if (Object.keys(courseErrors).length> 0) { %>
-
-                <div class="meddelande-ruta">
-                    <p><b>Hoppsan, något gick fel!</b></p>
-
-                    <ul>
-                        <% Object.values(courseErrors).forEach(error=> { %>
-                            <li>
-                                <%= error %>
-                            </li>
-                            <% }) %>
-                    </ul>
-                </div>
-
-            <% } %>
         </div>
 
         <footer>
